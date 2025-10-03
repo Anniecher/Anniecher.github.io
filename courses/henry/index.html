@@ -21,13 +21,7 @@
 	<script src="connectors/scorm.min.js"></script>
 	<link href="./styles/bundle.css" rel="stylesheet"></link>
 
-<script>
-document.querySelectorAll('*').forEach(el => {
-  if (el.textContent && el.textContent.includes('banner-content')) {
-    el.style.display = 'none';
-  }
-});
-</script>	
+	
 	
 </head>
 <body>
@@ -41,5 +35,12 @@ document.querySelectorAll('*').forEach(el => {
 				.initialize(startFn)
 		}
 	</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.banner-content').forEach(el => {
+    el.style.display = 'none';
+  });
+});
+</script>	
 </body>
 </html>
