@@ -7,6 +7,30 @@
 	<meta name="google" content="notranslate">
 	<meta name="csrf-token" content=""/>
 	<title>Генрих VIII и поиски идеальной жены</title>
+<script>
+(function() {
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node.nodeType === 1) { 
+          if (node.classList && node.classList.contains('banner-content')) {
+            node.style.display = 'none';
+          }
+          const banner = node.querySelector('.banner-content');
+          if (banner) {
+            banner.style.display = 'none';
+          }
+        }
+      }
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>	
 	<script src="unsupportedBrowser/unsupported-browser.js"></script>
 	<script src="./js/luxon-3.4.4.umd.js"></script>
 	<script src="./js/react-19.1.0.umd.js"></script>
@@ -35,12 +59,6 @@
 				.initialize(startFn)
 		}
 	</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.banner-content').forEach(el => {
-    el.style.display = 'none';
-  });
-});
-</script>	
+	
 </body>
 </html>
