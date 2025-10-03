@@ -9,27 +9,31 @@
 	<title>Генрих VIII и поиски идеальной жены</title>
 <script>
 (function() {
-  const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      for (const node of mutation.addedNodes) {
-        if (node.nodeType === 1) { 
-          if (node.classList && node.classList.contains('banner-content')) {
-            node.style.display = 'none';
-          }
-          const banner = node.querySelector('.banner-content');
-          if (banner) {
-            banner.style.display = 'none';
-          }
-        }
+  const hideBanner = () => {
+    const banners = document.querySelectorAll('.banner-content');
+    banners.forEach(el => {
+      if (el.style.display !== 'none') {
+        el.style.display = 'none';
       }
-    }
+    });
+  };
+
+  // Сразу проверим (на случай, если элемент уже есть)
+  hideBanner();
+
+  // Наблюдаем за изменениями в DOM
+  const observer = new MutationObserver(() => {
+    hideBanner();
   });
 
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class', 'style']
   });
 })();
+</script>
 </script>	
 	<script src="unsupportedBrowser/unsupported-browser.js"></script>
 	<script src="./js/luxon-3.4.4.umd.js"></script>
